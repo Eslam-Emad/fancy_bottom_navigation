@@ -131,19 +131,20 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
             crossAxisAlignment: CrossAxisAlignment.center,
             children: widget.tabs
                 .map((t) => TabItem(
-                    uniqueKey: t.key,
-                    selected: t.key == widget.tabs[currentSelected].key,
-                    iconData: t.iconData,
-                    title: t.title,
-                    iconColor: inactiveIconColor,
-                    textColor: textColor,
-                    callbackFunction: (uniqueKey) {
-                      int selected = widget.tabs
-                          .indexWhere((tabData) => tabData.key == uniqueKey);
-                      widget.onTabChangedListener(selected);
-                      _setSelected(uniqueKey);
-                      _initAnimationAndStart(_circleAlignX, 1);
-                    }))
+                uniqueKey: t.key,
+                selected: t.key == widget.tabs[currentSelected].key,
+                iconData: t.iconData,
+                title: t.title,
+                iconColor: inactiveIconColor,
+                textColor: textColor,
+                hasBadge: t.hasBadge,
+                callbackFunction: (uniqueKey) {
+                  int selected = widget.tabs
+                      .indexWhere((tabData) => tabData.key == uniqueKey);
+                  widget.onTabChangedListener(selected);
+                  _setSelected(uniqueKey);
+                  _initAnimationAndStart(_circleAlignX, 1);
+                }))
                 .toList(),
           ),
         ),
@@ -259,10 +260,11 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 }
 
 class TabData {
-  TabData({@required this.iconData, @required this.title, this.onclick});
+  TabData({@required this.iconData, @required this.title, this.onclick, this.hasBadge = false});
 
   IconData iconData;
   String title;
   Function onclick;
+  bool hasBadge;
   final UniqueKey key = UniqueKey();
 }
