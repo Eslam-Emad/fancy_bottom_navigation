@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
       {@required this.tabs,
-      @required this.onTabChangedListener,
+       @required this.onTabChangedListener,
       this.key,
       this.initialSelection = 0,
       this.circleSize = 60,
@@ -117,7 +117,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   @override
   Widget build(BuildContext context) {
     return Stack(
-      overflow: Overflow.visible,
+      clipBehavior: Clip.none,
       alignment: Alignment.bottomCenter,
       children: <Widget>[
         Container(
